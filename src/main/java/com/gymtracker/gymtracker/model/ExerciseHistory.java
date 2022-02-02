@@ -25,7 +25,7 @@ public class ExerciseHistory {
     @Id
     @Column(name = "exercise_history_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotEmpty
     @Min(0)

@@ -1,5 +1,6 @@
 package com.gymtracker.gymtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class Exercise {
     @Id
     @Column(name = "exercise_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
 
     @NotEmpty
@@ -40,6 +41,7 @@ public class Exercise {
     @JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy="exercise")
     private Set<ExerciseHistory> exerciseHistories;
 

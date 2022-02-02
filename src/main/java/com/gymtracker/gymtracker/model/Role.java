@@ -6,27 +6,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "day")
-public class Day {
+@Table(name = "role")
+public class Role {
+
 
     @Id
-    @Column(name = "day_id")
+    @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
-    private int day;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
     private User user;
+
+
+
+
 
 
 }

@@ -1,14 +1,21 @@
 package com.gymtracker.gymtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+
+import static javax.persistence.FetchType.EAGER;
 
 
 @AllArgsConstructor
@@ -22,7 +29,9 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+
+    private String username;
 
     @NotEmpty
     private String firstname;
@@ -30,7 +39,6 @@ public class User {
     @NotEmpty
     private String lastname;
 
-    @NotEmpty
     @Min(50)
     @Max(300)
     private Double height;
@@ -41,18 +49,27 @@ public class User {
     @NotEmpty
     private String password;
 
+    private Double bmi;
 
+    @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Exercise> exercises;
 
+    @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Day> days;
 
+    @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Weight> weights;
 
+    @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Plan> plans;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> roles;
+
 
 
 }

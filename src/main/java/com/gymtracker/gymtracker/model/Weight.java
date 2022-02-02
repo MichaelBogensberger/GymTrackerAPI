@@ -23,7 +23,7 @@ public class Weight {
     @Id
     @Column(name = "weight_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Min(0)
     @Max(500)
