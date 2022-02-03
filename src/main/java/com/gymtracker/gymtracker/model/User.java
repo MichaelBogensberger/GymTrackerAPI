@@ -67,7 +67,7 @@ public class User {
     @OneToMany(mappedBy="user")
     private Set<Plan> plans;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
 
 
