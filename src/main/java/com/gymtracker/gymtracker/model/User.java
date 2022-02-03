@@ -1,10 +1,7 @@
 package com.gymtracker.gymtracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
@@ -17,7 +14,7 @@ import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
 
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -66,10 +63,6 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Plan> plans;
-
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles;
-
 
 
 }

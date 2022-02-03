@@ -2,7 +2,6 @@ package com.gymtracker.gymtracker.service;
 
 import com.gymtracker.gymtracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.gymtracker.gymtracker.repository.UserRepository;
 
@@ -31,6 +30,7 @@ public class UserService {
                 ", lastname='" + lastname + '\'' +
                 "} wurde angelegt";
     }
+
 
 
 }
