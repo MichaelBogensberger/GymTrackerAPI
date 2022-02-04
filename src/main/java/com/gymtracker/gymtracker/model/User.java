@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
