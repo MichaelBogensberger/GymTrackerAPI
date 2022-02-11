@@ -22,6 +22,7 @@ public class UserController {
 
 
 
+    //get User
     @GetMapping("/api/user/{id}")
     public User getUserById(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
 
@@ -34,13 +35,27 @@ public class UserController {
     }
 
 
-    @PostMapping( "/api/users")
-    public String createUser(@RequestHeader String firstname,
+    //create User
+    @PostMapping( "/api/user")
+    public User createUser(@RequestHeader String firstname,
                              @RequestHeader String lastname,
                              @RequestHeader  String email,
                              @RequestHeader  String password,
                              @RequestHeader String username) {
         return userService.createUser(username, email, firstname, lastname, password);
+    }
+
+    // edit Height
+    @PutMapping("/api/user/height/{id}")
+    public User updateHeight(@RequestHeader Double height, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
+
+        if(accessValidation.validateUser(id, authentication)) {
+            return userService.updateHeight(id, height);
+        } else {
+            throw new ValidationDeclinedException();
+        }
+
+
     }
 
 

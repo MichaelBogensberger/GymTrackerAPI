@@ -34,7 +34,7 @@ public class UserService {
 
 
 
-    public String createUser(String username, String email, String firstname, String lastname, String password) {
+    public User createUser(String username, String email, String firstname, String lastname, String password) {
         User user = new User();
         user.setFirstname(firstname);
         user.setLastname(lastname);
@@ -44,14 +44,14 @@ public class UserService {
         //user.setPassword(password);
         userRepository.save(user);
 
-        return "User{" +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                "} wurde angelegt";
+        return user;
     }
 
 
+    public User updateHeight(Integer id, Double height) {
+        User foundUser = userRepository.findById(id).get();
+        foundUser.setHeight(height);
+        return userRepository.save(foundUser);
+    }
 
 }
