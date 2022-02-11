@@ -10,7 +10,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 
 @AllArgsConstructor
@@ -27,15 +26,14 @@ public class Weight {
 
     @Min(0)
     @Max(500)
-    @NotEmpty
     private Double weight;
 
-    @NotEmpty
     private Date date;
 
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="user_id")
     private User user;
+
 
 }

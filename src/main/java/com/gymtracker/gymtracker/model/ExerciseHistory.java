@@ -38,7 +38,7 @@ public class ExerciseHistory {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name="exercise_id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="exercise_id")
     private Exercise exercise;
 
 }

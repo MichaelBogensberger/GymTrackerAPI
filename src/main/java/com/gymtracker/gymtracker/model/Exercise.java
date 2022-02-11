@@ -38,7 +38,7 @@ public class Exercise {
     private int reps;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="user_id")
     private User user;
 
     @JsonIgnore
@@ -47,7 +47,7 @@ public class Exercise {
 
 
     @ManyToOne
-    @JoinColumn(name="plan_id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="plan_id")
     private Plan plan;
 
 

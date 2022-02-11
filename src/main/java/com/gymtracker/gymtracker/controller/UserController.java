@@ -27,7 +27,7 @@ public class UserController {
     public User getUserById(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
 
         if(accessValidation.validateUser(id, authentication)) {
-            return userService.findById(id, authentication);
+            return userService.findById(id);
         } else {
             throw new ValidationDeclinedException();
         }

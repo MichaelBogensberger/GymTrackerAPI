@@ -19,16 +19,7 @@ public class UserService {
     
 
 
-    public User findById(Integer id, Authentication authentication) {
-        System.out.println(userRepository.findIdByUsername("Michi"));
-
-        /*
-        if(val.validateUser(id, authentication)) {
-            return userRepository.findById(id).get();
-        } else {
-            return userRepository.findById(id).get();
-        }
-         */
+    public User findById(Integer id) {
         return userRepository.findById(id).get();
     }
 
@@ -53,5 +44,9 @@ public class UserService {
         foundUser.setHeight(height);
         return userRepository.save(foundUser);
     }
+
+
+
+
 
 }
