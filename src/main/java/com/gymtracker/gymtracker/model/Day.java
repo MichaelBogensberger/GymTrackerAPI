@@ -21,7 +21,6 @@ public class Day {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
     private int day;
 
     @ManyToOne

@@ -1,9 +1,6 @@
 package com.gymtracker.gymtracker.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -24,16 +21,20 @@ public class Weight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Min(0)
-    @Max(500)
+
     private Double weight;
 
     private Date date;
 
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="user_id")
     private User user;
 
+    public Weight(Integer id, Double weight, Date date) {
+        this.id = id;
+        this.weight = weight;
+        this.date = date;
+    }
 
 }
