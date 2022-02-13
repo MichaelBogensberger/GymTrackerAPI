@@ -34,6 +34,13 @@ public class UserController {
 
     }
 
+    @PostMapping("/api/user/{id}/calcBMI")
+    public String calcBMI(@PathVariable Integer id) {
+        return userService.calcBMI(id);
+    }
+
+
+
 
     //create User
     @PostMapping( "/api/user")

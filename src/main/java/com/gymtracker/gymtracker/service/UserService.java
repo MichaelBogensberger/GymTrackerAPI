@@ -16,6 +16,8 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired WeightService weightService;
     
 
 
@@ -46,7 +48,17 @@ public class UserService {
     }
 
 
+    public String calcBMI(Integer id) {
+        User foundUser = userRepository.findById(id).get();
+        Double height = foundUser.getHeight();
+        Double weight = weightService.findMostCurrentByUserId(id);
+        Double bmi = weight / Math.pow(height/100,2);
+        bmi = Math.round(bmi * 100.0) / 100.0;
 
+        foundUser.setBmi(bmi);
+        userRepository.save(foundUser);
+        return "BMI berechnet und gespeichert: " + bmi;
+    }
 
 
 }
