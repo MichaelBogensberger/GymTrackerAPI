@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
     @Autowired
@@ -43,7 +44,7 @@ public class UserController {
 
 
     //create User
-    @PostMapping( "/api/user")
+    @PostMapping( "/api/createUser")
     public User createUser(@RequestHeader String firstname,
                              @RequestHeader String lastname,
                              @RequestHeader  String email,
