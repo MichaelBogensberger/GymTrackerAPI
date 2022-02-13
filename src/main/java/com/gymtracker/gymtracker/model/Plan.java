@@ -23,10 +23,8 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
     private String type;
 
-    @NotEmpty
     private int type_order;
 
     @ManyToOne

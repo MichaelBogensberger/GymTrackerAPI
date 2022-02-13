@@ -27,14 +27,12 @@ public class ExerciseHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
     @Min(0)
     @Max(700)
     private Double weight;
 
 
-    @NotEmpty
-    @DateTimeFormat(fallbackPatterns = "dd/MM/yyyy")
+    //@DateTimeFormat(fallbackPatterns = "dd/MM/yyyy")
     private Date date;
 
     @ManyToOne
