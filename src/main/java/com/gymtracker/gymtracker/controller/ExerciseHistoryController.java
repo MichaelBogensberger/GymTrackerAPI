@@ -32,7 +32,7 @@ public class ExerciseHistoryController {
                                               @PathVariable Integer exercise_id,
                                               @PathVariable Integer user_id,
                                               Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(user_id, authentication)) {
+        if(accessValidation.validateUser(user_id, authentication.getName())) {
             return exerciseHistoryService.addHistory(exercise_id, date, weight);
         } else {
             throw new ValidationDeclinedException();
@@ -41,7 +41,7 @@ public class ExerciseHistoryController {
 
     @GetMapping("/api/user/{id}/exercise/{exercise_id}/history")
     public List<ExerciseHistoryList> getHistory(@PathVariable Integer id, @PathVariable Integer exercise_id , Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return exerciseHistoryService.getHistory(exercise_id);
         } else {
             throw new ValidationDeclinedException();

@@ -27,9 +27,16 @@ public class UserController {
     @GetMapping("/api/user/{id}")
     public User getUserById(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
 
-        if(accessValidation.validateUser(id, authentication)) {
+        System.out.println("Geschickte ID: " + id);
+        userService.findIdByUsername(authentication.getName());
+        System.out.println("USERNAME IST ------> " + authentication.getName());
+        System.out.println("ERG: " + accessValidation.validateUser(id, authentication.getName()));
+
+
+        if(accessValidation.validateUser(id, authentication.getName()) == true) {
             return userService.findById(id);
         } else {
+            System.out.println("ERROR");
             throw new ValidationDeclinedException();
         }
 
@@ -49,15 +56,16 @@ public class UserController {
                              @RequestHeader String lastname,
                              @RequestHeader  String email,
                              @RequestHeader  String password,
-                             @RequestHeader String username) {
-        return userService.createUser(username, email, firstname, lastname, password);
+                             @RequestHeader String username,
+                           @RequestHeader Double height) {
+        return userService.createUser(username, email, firstname, lastname, password, height);
     }
 
     // edit Height
     @PutMapping("/api/user/height/{id}")
     public User updateHeight(@RequestHeader Double height, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
 
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return userService.updateHeight(id, height);
         } else {
             throw new ValidationDeclinedException();

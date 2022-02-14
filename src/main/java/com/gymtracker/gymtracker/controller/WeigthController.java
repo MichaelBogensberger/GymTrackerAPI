@@ -35,7 +35,7 @@ public class WeigthController {
     @GetMapping("/api/user/{id}/currentWeight")
     public Double getCurrentWeight(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
         System.out.println("in app");
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return weightService.findMostCurrentByUserId(id);
         } else {
             throw new ValidationDeclinedException();
@@ -45,7 +45,7 @@ public class WeigthController {
     @GetMapping("/api/user/{id}/weight")
     public List<weightList> getWeight(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
         System.out.println("in app");
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return weightService.findByUserId(id);
         } else {
             throw new ValidationDeclinedException();
@@ -62,7 +62,7 @@ public class WeigthController {
     //add weight
     @PostMapping( "/api/user/{id}/weight")
     public Weight addWeight(@RequestHeader Double weight, @RequestHeader Date date, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             System.out.println(weight);
             System.out.println(date);
             return weightService.addWeight(id, weight, date);

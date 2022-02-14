@@ -32,7 +32,7 @@ public class ExerciseController {
                                 @PathVariable Integer plan_id,
                                 @PathVariable Integer user_id,
                                 Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(user_id, authentication)) {
+        if(accessValidation.validateUser(user_id, authentication.getName())) {
             return exerciseService.addExercise(user_id, plan_id, name, reps, sets);
         } else {
             throw new ValidationDeclinedException();
@@ -42,7 +42,7 @@ public class ExerciseController {
 
     @GetMapping("/api/user/{user_id}/plan/{plan_id}/exercise")
     public List<ExerciseList> getExercise(@PathVariable Integer user_id,@PathVariable Integer plan_id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(user_id, authentication)) {
+        if(accessValidation.validateUser(user_id, authentication.getName())) {
             return exerciseService.getExercise(user_id, plan_id);
         } else {
             throw new ValidationDeclinedException();
@@ -51,7 +51,7 @@ public class ExerciseController {
 
     @GetMapping("/api/user/{user_id}/exercise")
     public List<ExerciseList> getAllExercises(@PathVariable Integer user_id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(user_id, authentication)) {
+        if(accessValidation.validateUser(user_id, authentication.getName())) {
             return exerciseService.getAllExercises(user_id);
         } else {
             throw new ValidationDeclinedException();

@@ -15,8 +15,10 @@ public class AccessValidation {
     UserRepository userRepository;
 
 
-    public boolean validateUser(Integer requestedId, Authentication authentication) {
-        if(userRepository.findIdByUsername(authentication.getName()) == requestedId) {
+    public boolean validateUser(int requestedId, String username) {
+        //String username = authentication.getName();
+
+        if(userRepository.findIdByUsername(username) == requestedId) {
             return true;
         } else {
             return false;

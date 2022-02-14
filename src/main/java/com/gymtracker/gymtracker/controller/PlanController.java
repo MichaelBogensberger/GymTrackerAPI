@@ -30,7 +30,7 @@ public class PlanController {
                         @RequestHeader Integer type_order,
                         @PathVariable Integer id,
                         Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return planService.addPlan(id, type, type_order);
         } else {
             throw new ValidationDeclinedException();
@@ -40,7 +40,7 @@ public class PlanController {
 
     @GetMapping("/api/user/{id}/plan")
     public List<PlanList> getPlan(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return planService.getPlan(id);
         } else {
             throw new ValidationDeclinedException();

@@ -28,7 +28,7 @@ public class DayController {
     //add day
     @PostMapping( "/api/user/{id}/day")
     public Day addDay(@RequestHeader Integer day, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return dayService.addDay(id, day);
         } else {
             throw new ValidationDeclinedException();
@@ -38,7 +38,7 @@ public class DayController {
 
     @GetMapping("/api/user/{id}/day")
     public List<DayList> getWeight(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(id, authentication)) {
+        if(accessValidation.validateUser(id, authentication.getName())) {
             return dayService.findById(id);
         } else {
             throw new ValidationDeclinedException();

@@ -27,12 +27,13 @@ public class UserService {
 
 
 
-    public User createUser(String username, String email, String firstname, String lastname, String password) {
+    public User createUser(String username, String email, String firstname, String lastname, String password, Double height) {
         User user = new User();
         user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setEmail(email);
         user.setUsername(username);
+        user.setHeight(height);
         user.setPassword(bCryptPasswordEncoder.encode(password));
         //user.setPassword(password);
         userRepository.save(user);
@@ -58,6 +59,12 @@ public class UserService {
         foundUser.setBmi(bmi);
         userRepository.save(foundUser);
         return "BMI berechnet und gespeichert: " + bmi;
+    }
+
+
+    public void findIdByUsername(String name) {
+        Integer id = userRepository.findIdByUsername(name);
+        System.out.println("GEFUNDENE ID IST ------> " + id);
     }
 
 
