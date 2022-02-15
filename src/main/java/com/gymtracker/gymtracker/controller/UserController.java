@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/api/user/{id}/calcBMI")
-    public String calcBMI(@PathVariable Integer id) {
+    public User calcBMI(@PathVariable Integer id) {
         return userService.calcBMI(id);
     }
 

@@ -49,7 +49,7 @@ public class UserService {
     }
 
 
-    public String calcBMI(Integer id) {
+    public User calcBMI(Integer id) {
         User foundUser = userRepository.findById(id).get();
         Double height = foundUser.getHeight();
         Double weight = weightService.findMostCurrentByUserId(id);
@@ -58,7 +58,7 @@ public class UserService {
 
         foundUser.setBmi(bmi);
         userRepository.save(foundUser);
-        return "BMI berechnet und gespeichert: " + bmi;
+        return foundUser;
     }
 
 
