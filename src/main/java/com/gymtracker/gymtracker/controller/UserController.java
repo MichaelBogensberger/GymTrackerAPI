@@ -42,6 +42,21 @@ public class UserController {
 
     }
 
+
+
+    @GetMapping("/api/user/")
+    public User getUserByAuth(Authentication authentication) throws ValidationDeclinedException {
+
+
+        userService.findIdByUsername(authentication.getName());
+        System.out.println("USERNAME IST ------> " + authentication.getName());
+        return userService.getUserByAuth(authentication);
+
+
+    }
+
+
+
     @PostMapping("/api/user/{id}/calcBMI")
     public User calcBMI(@PathVariable Integer id) {
         return userService.calcBMI(id);

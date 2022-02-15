@@ -33,10 +33,11 @@ public class WeigthController {
 
 
     @GetMapping("/api/user/{id}/currentWeight")
-    public Double getCurrentWeight(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
+    public String getCurrentWeight(@PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
         System.out.println("in app");
         if(accessValidation.validateUser(id, authentication.getName())) {
-            return weightService.findMostCurrentByUserId(id);
+            String currentWeight = "{\"weight\":\"" + weightService.findMostCurrentByUserId(id) + "\"}";
+            return currentWeight;
         } else {
             throw new ValidationDeclinedException();
         }

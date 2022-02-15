@@ -68,4 +68,11 @@ public class UserService {
     }
 
 
+    public User getUserByAuth(Authentication authentication) {
+       int id = userRepository.findIdByUsername(authentication.getName());
+       User foundUser = userRepository.findById(id).get();
+       return foundUser;
+
+    }
+
 }
