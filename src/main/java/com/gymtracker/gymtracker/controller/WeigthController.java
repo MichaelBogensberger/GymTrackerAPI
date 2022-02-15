@@ -61,11 +61,11 @@ public class WeigthController {
 
     //add weight
     @PostMapping( "/api/user/{id}/weight")
-    public Weight addWeight(@RequestHeader Double weight, @RequestHeader Date date, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
+    public Weight addWeight(@RequestHeader Double weight, @RequestHeader Date weightDate, @PathVariable Integer id, Authentication authentication) throws ValidationDeclinedException {
         if(accessValidation.validateUser(id, authentication.getName())) {
             System.out.println(weight);
-            System.out.println(date);
-            return weightService.addWeight(id, weight, date);
+            System.out.println(weightDate);
+            return weightService.addWeight(id, weight, weightDate);
         } else {
             throw new ValidationDeclinedException();
         }
