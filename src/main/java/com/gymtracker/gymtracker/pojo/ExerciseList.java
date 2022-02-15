@@ -6,15 +6,25 @@ public class ExerciseList {
     private String name;
     private Integer reps;
     private Integer sets;
+    private Double gewicht;
 
-    public ExerciseList(Integer exercise_id, String name, Integer reps, Integer sets) {
+    public ExerciseList(Integer exercise_id, String name, Integer reps, Integer sets, Double gewicht) {
         this.exercise_id = exercise_id;
         this.name = name;
         this.reps = reps;
         this.sets = sets;
+        this.gewicht = gewicht;
     }
 
     public ExerciseList() {
+    }
+
+    public Double getGewicht() {
+        return gewicht;
+    }
+
+    public void setGewicht(Double gewicht) {
+        this.gewicht = gewicht;
     }
 
     public Integer getExercise_id() {

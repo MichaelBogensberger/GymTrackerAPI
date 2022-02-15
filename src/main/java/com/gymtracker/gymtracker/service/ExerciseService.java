@@ -1,11 +1,9 @@
 package com.gymtracker.gymtracker.service;
 
 import com.gymtracker.gymtracker.model.Exercise;
-import com.gymtracker.gymtracker.model.Plan;
 import com.gymtracker.gymtracker.model.User;
 import com.gymtracker.gymtracker.pojo.ExerciseList;
 import com.gymtracker.gymtracker.repository.ExerciseRepository;
-import com.gymtracker.gymtracker.repository.PlanRepository;
 import com.gymtracker.gymtracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,25 +19,20 @@ public class ExerciseService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    PlanRepository planRepository;
 
-    public Exercise addExercise(Integer user_id, Integer plan_id, String name, Integer reps, Integer sets) {
+
+    public Exercise addExercise(Integer user_id, String name, Integer reps, Integer sets,Double gewicht) {
         User foundUser = userRepository.findById(user_id).get();
-        Plan foundPlan = planRepository.findById(plan_id).get();
 
         Exercise nExercise = new Exercise();
         nExercise.setName(name);
         nExercise.setReps(reps);
         nExercise.setSets(sets);
         nExercise.setUser(foundUser);
-        nExercise.setPlan(foundPlan);
+        nExercise.setGewicht(gewicht);
+
         return exerciseRepository.save(nExercise);
 
-    }
-
-    public List<ExerciseList> getExercise(Integer user_id, Integer plan_id) {
-        return exerciseRepository.findByUserId(user_id, plan_id);
     }
 
 
@@ -47,4 +40,16 @@ public class ExerciseService {
         return exerciseRepository.findAllByUserId(user_id);
     }
 
+    public Exercise updateExercise(String name, Integer reps, Integer sets, Double gewicht, Integer exId) {
+        Exercise foundExercise = exerciseRepository.findById(exId).get();
+        foundExercise.setGewicht(gewicht);
+        foundExercise.setSets(sets);
+        foundExercise.setReps(reps);
+        foundExercise.setName(name);
+        return exerciseRepository.save(foundExercise);
+    }
+
+    public void deleteExercise(Integer id) {
+        exerciseRepository.deleteById(id);
+    }
 }

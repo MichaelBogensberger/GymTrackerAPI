@@ -37,18 +37,11 @@ public class Exercise {
     @Max(40)
     private int reps;
 
+    private Double gewicht;
+
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-
-    @JsonIgnore
-    @OneToMany(mappedBy="exercise")
-    private Set<ExerciseHistory> exerciseHistories;
-
-
-    @ManyToOne
-    @JoinColumn(name="plan_id")
-    private Plan plan;
 
 
 }

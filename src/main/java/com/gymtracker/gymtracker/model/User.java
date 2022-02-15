@@ -53,17 +53,10 @@ public class User {
     @OneToMany(mappedBy="user")
     private Set<Exercise> exercises;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="user")
-    private Set<Day> days;
 
     @JsonIgnore
     @OneToMany(mappedBy="user")
     private Set<Weight> weights;
-
-    @JsonIgnore
-    @OneToMany(mappedBy="user")
-    private Set<Plan> plans;
 
 
 }

@@ -25,29 +25,20 @@ public class ExerciseController {
     ExerciseService exerciseService;
 
     //add exercise
-    @PostMapping( "/api/user/{user_id}/plan/{plan_id}/exercise")
+    @PostMapping( "/api/user/{user_id}/exercise")
     public Exercise addExercise(@RequestHeader String name,
                                 @RequestHeader Integer reps,
                                 @RequestHeader Integer sets,
-                                @PathVariable Integer plan_id,
                                 @PathVariable Integer user_id,
+                                @RequestHeader Double gewicht,
                                 Authentication authentication) throws ValidationDeclinedException {
         if(accessValidation.validateUser(user_id, authentication.getName())) {
-            return exerciseService.addExercise(user_id, plan_id, name, reps, sets);
+            return exerciseService.addExercise(user_id, name, reps, sets, gewicht);
         } else {
             throw new ValidationDeclinedException();
         }
     }
 
-
-    @GetMapping("/api/user/{user_id}/plan/{plan_id}/exercise")
-    public List<ExerciseList> getExercise(@PathVariable Integer user_id,@PathVariable Integer plan_id, Authentication authentication) throws ValidationDeclinedException {
-        if(accessValidation.validateUser(user_id, authentication.getName())) {
-            return exerciseService.getExercise(user_id, plan_id);
-        } else {
-            throw new ValidationDeclinedException();
-        }
-    }
 
     @GetMapping("/api/user/{user_id}/exercise")
     public List<ExerciseList> getAllExercises(@PathVariable Integer user_id, Authentication authentication) throws ValidationDeclinedException {
@@ -57,6 +48,29 @@ public class ExerciseController {
             throw new ValidationDeclinedException();
         }
     }
+
+
+    @PutMapping( "/api/user/{user_id}/exercise/{exId}")
+    public Exercise updateExercise(@RequestHeader String name,
+                                @RequestHeader Integer reps,
+                                @RequestHeader Integer sets,
+                                @PathVariable Integer user_id,
+                                @RequestHeader Double gewicht,
+                                @PathVariable Integer exId,
+                                Authentication authentication) throws ValidationDeclinedException {
+        if(accessValidation.validateUser(user_id, authentication.getName())) {
+            return exerciseService.updateExercise(name, reps, sets, gewicht, exId);
+        } else {
+            throw new ValidationDeclinedException();
+        }
+    }
+
+    @DeleteMapping(value = "/api/exercise/{id}")
+    public String deletePost(@PathVariable Integer id) {
+        exerciseService.deleteExercise(id);
+        return "{\"erfolg\":\"true\"}";
+    }
+
 
 
 
